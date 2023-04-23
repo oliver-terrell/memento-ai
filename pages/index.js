@@ -34,13 +34,13 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Two brian cells 🤪</title>
-        <link rel="icon" href="/tesla.png" />
+        <title>MementoGPT</title>
+        <link rel="icon" href="/gold-elephant.png" />
       </Head>
 
       <main className={styles.main}>
-        <img src="/tesla.png" className={styles.icon} />
-        <h3>Name my car</h3>
+        <img src="/buddha-elephant.png" className={styles.icon} />
+        <h3>Memento GPT</h3>
         <form onSubmit={onSubmit}>
           <input
             type="text"

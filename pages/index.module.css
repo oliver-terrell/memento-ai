@@ -17,7 +17,7 @@
 .main input {
   font-size: 16px;
   line-height: 24px;
-  color: #353740;
+  color: whitesmoke;
   font-family: "ColfaxAI", Helvetica, sans-serif;
 }
 .main {
@@ -27,13 +27,14 @@
   padding-top: 60px;
 }
 .main .icon {
-  width: 34px;
+  width: 202px;
+  border: none;
 }
 .main h3 {
   font-size: 32px;
   line-height: 40px;
   font-weight: bold;
-  color: #202123;
+  color: #F1CA1D;
   margin: 16px 0 40px;
 }
 .main form {
