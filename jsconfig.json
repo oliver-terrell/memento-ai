@@ -1,9 +1,0 @@
-// {
-//     "compilerOptions": {
-//         "baseUrl": ".",
-//         "paths": {
-//             "API": ["~/pages/api/*"]
-//         }
-//     }
-// }
-// TODO: alias paths dont work in prod for some reason
