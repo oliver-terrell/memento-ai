@@ -1,4 +1,4 @@
-import { openai, configuration } from "API/base.js";
+import { openai, configuration } from "./base.js";
 
 export default async function (req, res) {
   if (!configuration.apiKey) {
