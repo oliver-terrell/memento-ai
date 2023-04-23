@@ -35,17 +35,17 @@ export default function Home() {
     <div>
       <Head>
         <title>Two brian cells 🤪</title>
-        <link rel="icon" href="/dog.png" />
+        <link rel="icon" href="/tesla.png" />
       </Head>
 
       <main className={styles.main}>
-        <img src="/tesla.png" className={styles.icon} />
-        <h3>Name my pet</h3>
+        <img src="/dog.png" className={styles.icon} />
+        <h3>Name my car</h3>
         <form onSubmit={onSubmit}>
           <input
             type="text"
             name="animal"
-            placeholder="Enter a make and model, and maybe a color..."
+            placeholder="Enter a make. Go f*ck yourself if you want additional features"
             value={animalInput}
             onChange={(e) => setAnimalInput(e.target.value)}
           />
