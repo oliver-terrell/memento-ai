@@ -45,7 +45,7 @@ export default function Home() {
           <input
             type="text"
             name="animal"
-            placeholder="API not hooked up yet. But soon..."
+            placeholder="API not hooked up yet. Soon..."
             value={animalInput}
             onChange={(e) => setAnimalInput(e.target.value)}
           />
