@@ -45,7 +45,7 @@ export default function Home() {
           <input
             type="text"
             name="animal"
-            placeholder="Enter a make. Go f*ck yourself if you want additional features"
+            placeholder="API not hooked up yet. But soon..."
             value={animalInput}
             onChange={(e) => setAnimalInput(e.target.value)}
           />
