@@ -45,7 +45,7 @@ export default function Home() {
           <input
             type="text"
             name="animal"
-            placeholder="Enter make, model, year, and color"
+            placeholder="Enter relevant info about your car"
             value={animalInput}
             onChange={(e) => setAnimalInput(e.target.value)}
           />
