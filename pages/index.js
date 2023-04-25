@@ -45,11 +45,12 @@ export default function Home() {
           <input
             type="text"
             name="animal"
-            placeholder="Enter relevant info about your car"
+            placeholder="Coming soon"
             value={animalInput}
             onChange={(e) => setAnimalInput(e.target.value)}
+            disabled={true}
           />
-          <input type="submit" value="Generate names" />
+          <input type="submit" value="Coming soon" disabled={true} />
         </form>
         <div className={styles.result}>{result}</div>
       </main>
