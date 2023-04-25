@@ -34,7 +34,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>MementoGPT</title>
+        <title>Memento GPT</title>
         <link rel="icon" href="/gold-elephant.png" />
       </Head>
 
