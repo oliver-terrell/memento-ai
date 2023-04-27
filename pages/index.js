@@ -28,7 +28,14 @@ export default function Home() {
         .sort((a, b) => {
           return parseFloat(b.split(':')[1]) - parseFloat(a.split(':')[1]);
         })
-        .map((trait) => <div key={trait}>{trait.replace('[','')}</div>);
+        .map((trait) => {
+            return <div key={trait}>
+              <div>
+                <b>{trait.split(':')[0].replace(/"([^"]+(?="))"/g, '$1')}:</b>
+                <span className={styles.numbers}>{parseFloat(trait.split(':')[1]).toString()}</span>
+              </div>
+            </div>
+        });
       setResult(output);
       setPrevQuery(query);
       setQuery("");
@@ -61,10 +68,12 @@ export default function Home() {
           />
           <input type="submit" value="Submit" />
         </form>
-        {loading && <div>Loading...</div>}
-        {error && <div>Error: {error}</div>}
-        {prevQuery && <div>{prevQuery}</div>}
-        {result && <div><h1>Your insights</h1><pre>{result}</pre></div>}
+        <div className={styles.results}>
+          {loading && <div>Loading...</div>}
+          {error && <div>Error: {error}</div>}
+          {!loading && prevQuery && <div><b>Your query:</b> {prevQuery}</div>}
+          {result && <div><h1>Your insights</h1><pre>{result}</pre></div>}
+        </div>
       </main>
     </div>
   );

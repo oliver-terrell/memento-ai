@@ -62,7 +62,12 @@
   text-align: center;
   cursor: pointer;
 }
-.main .result {
-  font-weight: bold;
-  margin-top: 40px;
+.main .results {
+  padding: 5px;
+}
+.main .results * {
+  padding-bottom: 5px;
+}
+.main .numbers {
+  float: right;
 }
