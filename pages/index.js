@@ -25,7 +25,7 @@ const devData = {data:
 export default function Home() {
   const [query, setQuery] = useState("");
   const [prevQuery, setPrevQuery] = useState(query);
-  const [result, setResult] = useState();
+  const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -40,6 +40,7 @@ export default function Home() {
 
     setLoading(true);
     setError(false);
+    setResult(null);
 
     try {
       const response = await axios.post("/api/bigFive", { query: query });
@@ -90,7 +91,7 @@ export default function Home() {
           <input type="submit" value="Submit" />
         </form>
         <div className={styles.results}>
-          {loading && <div>Loading...</div>}
+          {loading && <div className={styles.loading}>Loading...</div>}
           {error && <div>Error: {error}</div>}
           {!loading && prevQuery && <div><b>Your query:</b> {prevQuery}</div>}
           {result && <div><h1>Your insights</h1><pre>{result}</pre></div>}

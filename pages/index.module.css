@@ -65,6 +65,11 @@
 .main .results {
   width: 450px;
   padding: 5px;
+  margin-top: 20px;
+}
+.main .loading {
+  width: 100%;
+  text-align: center;
 }
 
 /* For 640 Resolution */  
