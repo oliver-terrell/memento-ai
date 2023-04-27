@@ -24,7 +24,12 @@ export default function Home() {
     try {
       const response = await axios.post("/api/bigFive", { query: query });
       var data = JSON.stringify(response.data).split(',');
-      setResult(data.map((trait) => <div>{trait}</div>));
+      var output = data.filter(trait => trait.includes('.'))
+        .sort((a, b) => {
+          return parseFloat(b.split(':')[1]) - parseFloat(a.split(':')[1]);
+        })
+        .map((trait) => <div key={trait}>{trait.replace('[','')}</div>);
+      setResult(output);
       setPrevQuery(query);
       setQuery("");
       setLoading(false);
