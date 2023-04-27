@@ -63,8 +63,19 @@
   cursor: pointer;
 }
 .main .results {
+  width: 450px;
   padding: 5px;
 }
+
+/* For 640 Resolution */  
+@media only screen   
+and (min-device-width : 360px)   
+and (max-device-width : 640px) {
+  .main .results {
+    width: 90vw;
+  }
+}  
+
 .main .results * {
   padding-bottom: 5px;
 }
