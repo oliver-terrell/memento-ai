@@ -1,33 +1,38 @@
 import Head from "next/head";
 import { useState } from "react";
 import styles from "./index.module.css";
+import axios from "axios";
 
 export default function Home() {
-  const [animalInput, setAnimalInput] = useState("");
+  const [query, setQuery] = useState("");
+  const [prevQuery, setPrevQuery] = useState(query);
   const [result, setResult] = useState();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
 
   async function onSubmit(event) {
     event.preventDefault();
+
+    if (query === '') {
+      setResult('An empty vessel can quench no thirst . . .');
+      return;
+    }
+
+    setLoading(true);
+
     try {
-      const response = await fetch("/api/generate", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ animal: animalInput }),
-      });
-
-      const data = await response.json();
-      if (response.status !== 200) {
-        throw data.error || new Error(`Request failed with status ${response.status}`);
-      }
-
-      setResult(data.result);
-      setAnimalInput("");
-    } catch(error) {
-      // Consider implementing your own error handling logic here
-      console.error(error);
-      alert(error.message);
+      const response = await axios.post("/api/bigFive", { query: query });
+      var data = JSON.stringify(response.data).split(',');
+      setResult(data.map((trait) => <div>{trait}</div>));
+      setPrevQuery(query);
+      setQuery("");
+      setLoading(false);
+    } catch (error) {
+      setError(error.message);
+      setPrevQuery(query);
+      setQuery("");
+      setLoading(false);
     }
   }
 
@@ -44,15 +49,17 @@ export default function Home() {
         <form onSubmit={onSubmit}>
           <input
             type="text"
-            name="animal"
-            placeholder="Coming soon"
-            value={animalInput}
-            onChange={(e) => setAnimalInput(e.target.value)}
-            disabled={true}
+            name="queryInput"
+            placeholder="Send a message..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
           />
-          <input type="submit" value="Coming soon" disabled={true} />
+          <input type="submit" value="Submit" />
         </form>
-        <div className={styles.result}>{result}</div>
+        {loading && <div>Loading...</div>}
+        {error && <div>Error: {error}</div>}
+        {prevQuery && <div>{prevQuery}</div>}
+        {result && <div><h1>Your insights</h1><pre>{result}</pre></div>}
       </main>
     </div>
   );
