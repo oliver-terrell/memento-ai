@@ -50,7 +50,7 @@ export default function Home() {
           <input
             type="text"
             name="queryInput"
-            placeholder="Send a message..."
+            placeholder="Learn how you communicate..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
