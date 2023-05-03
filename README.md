@@ -1,44 +1,45 @@
-# OpenAI API Quickstart - Node.js example app
+Here's how each of the provided words/terms fit into the five aspects of the Big Five model:
 
-This is an example pet name generator app used in the OpenAI API [quickstart tutorial](https://platform.openai.com/docs/quickstart). It uses the [Next.js](https://nextjs.org/) framework with [React](https://reactjs.org/). Check out the tutorial or follow the instructions below to get set up.
+1. Openness:
+- intellectual
+- imaginative
+- artistic
+- adventurous
+- authority_challenging
+- excitement_seeking
+- emotionally_aware
 
-![Text box that says name my pet with an icon of a dog](https://user-images.githubusercontent.com/10623307/213887080-b2bc4645-7fdb-4dbd-ae42-efce00d0dc29.png)
+2. Conscientiousness:
+- disciplined
+- achievement_striving
+- self_efficacy
+- cautious
+- orderliness
+- dutiful
 
+3. Extraversion:
+- outgoing
+- gregariousness
+- assertive
+- cheerful
+- extraversion
+- excitement_seeking
 
-## Setup
+4. Agreeableness:
+- trusting
+- altruism
+- cooperative
+- sympathy
+- agreeableness
+- uncompromising
+- modesty
 
-1. If you don’t have Node.js installed, [install it from here](https://nodejs.org/en/) (Node.js version >= 14.6.0 required)
+5. Neuroticism (Emotional Stability):
+- immoderation
+- fiery
+- stress_prone
+- neuroticism
+- melancholy
+- self_conscious
 
-2. Clone this repository
-
-3. Navigate into the project directory
-
-   ```bash
-   $ cd openai-quickstart-node
-   ```
-
-4. Install the requirements
-
-   ```bash
-   $ npm install
-   ```
-
-5. Make a copy of the example environment variables file
-
-   On Linux systems: 
-   ```bash
-   $ cp .env.example .env
-   ```
-   On Windows:
-   ```powershell
-   $ copy .env.example .env
-   ```
-6. Add your [API key](https://platform.openai.com/account/api-keys) to the newly created `.env` file
-
-7. Run the app
-
-   ```bash
-   $ npm run dev
-   ```
-
-You should now be able to access the app at [http://localhost:3000](http://localhost:3000)! For the full context behind this example app, check out the [tutorial](https://platform.openai.com/docs/quickstart).
+Note that some terms might fit into multiple aspects of the Big Five model. For example, excitement_seeking could be related to both openness and extraversion, as it can be associated with seeking new experiences (openness) or being outgoing and sociable (extraversion). The specific aspect it is assigned to may depend on the context in which it is used.
