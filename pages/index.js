@@ -73,7 +73,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>mymemento.ai</title>
+        <title>My Memento</title>
         <link rel="icon" href="/gold-elephant.png" />
       </Head>
 
