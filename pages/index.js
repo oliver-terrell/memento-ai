@@ -73,13 +73,13 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Memento GPT</title>
+        <title>MyMemento AI</title>
         <link rel="icon" href="/gold-elephant.png" />
       </Head>
 
       <main className={styles.main}>
         <img src="/buddha-elephant.png" className={styles.icon} />
-        <h3>Memento GPT</h3>
+        <h3>MyMemento AI</h3>
         <form onSubmit={onSubmit}>
           <input
             type="text"
