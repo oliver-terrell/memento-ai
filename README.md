@@ -1,4 +1,6 @@
-This project was initalized using OpenAI's `openai-quickstart-node` starter kit. Thank you to everyone involved for making such a project available!
+** NOTE ** This project was initalized using OpenAI's `openai-quickstart-node` starter kit. Thank you to everyone involved for making such a project available!
+
+------------------
 
 Here's how each of the provided words/terms fit into the five aspects of the Big Five model:
 
