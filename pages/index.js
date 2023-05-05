@@ -39,8 +39,13 @@ export default function MyMemento() {
     setResult(null);
 
     try {
-      // const response = await axios.post("/api/bigFive", { query: query });
-      const response = devData;
+      
+      const response = await axios.post("/api/bigFive", { query: query });
+
+      // TODO: clean up ui and show a simple text based summary then ship that live
+
+      // const response = devData;
+
       var data = JSON.stringify(response.data).split(',');
       var output = data.filter(trait => trait.includes('.'))
         .sort((a, b) => {
