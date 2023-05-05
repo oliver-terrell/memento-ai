@@ -39,7 +39,7 @@ export default function MyMemento() {
     setResult(null);
 
     try {
-      
+
       const response = await axios.post("/api/bigFive", { query: query });
 
       // TODO: clean up ui and show a simple text based summary then ship that live
@@ -78,27 +78,31 @@ export default function MyMemento() {
         <link rel="icon" href="/buddha-elephant.png" />
       </Head>
 
-      <main className={`${styles.main} h-screen dark:bg-black`}>
+      <main className={`${styles.main} h-screen dark:bg-black overflow-auto`}>
         <img src="/buddha-elephant.png" className={`${styles.icon}`} />
         <h3>My Memento</h3>
         <form onSubmit={onSubmit}>
-          <textarea
-            autoFocus={true}
+          <input
             type={"text"}
             name={"queryInput"}
-            placeholder={"Learn how you communicate..."}
+            placeholder={"Analyze emotional tone of language..."}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            cols={40}
-            
           />
           <input type="submit" value="Submit" />
         </form>
         <div className={`${styles.results}`}>
           {loading && <div className={`${styles.loading}`}>Loading...</div>}
           {error && <div>Error: {error}</div>}
-          {!loading && prevQuery && <div><b>Your query:</b> {prevQuery}</div>}
-          {result && <div><h1>Your insights</h1><pre>{result}</pre></div>}
+          {!loading && prevQuery && <div>
+            <div className={`text-center font-bold`}>Your query:</div> 
+            <div>{prevQuery}</div>
+            </div>}
+          {result && <div>
+              <h1 className={`text-xl font-semibold py-8 text-center`}>Your insights</h1>
+              <pre className={`py-4 text-base`}>{result}</pre>
+            </div>
+          }
         </div>
       </main>
     </div>
