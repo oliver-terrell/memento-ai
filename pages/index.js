@@ -1,8 +1,7 @@
 import Head from "next/head";
 import { useState } from "react";
-import styles from "./index.module.css";
 import axios from "axios";
-
+import styles from 'Styles/index.module.css';
 
 const devData = {data: 
 "outgoing:0.8960937095330063,"+
@@ -19,10 +18,7 @@ const devData = {data:
 "cheerful:0.6639879829215412,"
 };
 
-
-
-
-export default function Home() {
+export default function MyMemento() {
   const [query, setQuery] = useState("");
   const [prevQuery, setPrevQuery] = useState(query);
   const [result, setResult] = useState(null);
@@ -43,8 +39,8 @@ export default function Home() {
     setResult(null);
 
     try {
-      const response = await axios.post("/api/bigFive", { query: query });
-      // const response = devData;
+      // const response = await axios.post("/api/bigFive", { query: query });
+      const response = devData;
       var data = JSON.stringify(response.data).split(',');
       var output = data.filter(trait => trait.includes('.'))
         .sort((a, b) => {
@@ -71,27 +67,30 @@ export default function Home() {
   }
 
   return (
-    <div>
+    <div className={`dark bg-softGold`}>
       <Head>
         <title>My Memento</title>
-        <link rel="icon" href="/gold-elephant.png" />
+        <link rel="icon" href="/buddha-elephant.png" />
       </Head>
 
-      <main className={styles.main}>
-        <img src="/buddha-elephant.png" className={styles.icon} />
+      <main className={`${styles.main} h-screen dark:bg-black`}>
+        <img src="/buddha-elephant.png" className={`${styles.icon}`} />
         <h3>My Memento</h3>
         <form onSubmit={onSubmit}>
-          <input
-            type="text"
-            name="queryInput"
-            placeholder="Learn how you communicate..."
+          <textarea
+            autoFocus={true}
+            type={"text"}
+            name={"queryInput"}
+            placeholder={"Learn how you communicate..."}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
+            cols={40}
+            
           />
           <input type="submit" value="Submit" />
         </form>
-        <div className={styles.results}>
-          {loading && <div className={styles.loading}>Loading...</div>}
+        <div className={`${styles.results}`}>
+          {loading && <div className={`${styles.loading}`}>Loading...</div>}
           {error && <div>Error: {error}</div>}
           {!loading && prevQuery && <div><b>Your query:</b> {prevQuery}</div>}
           {result && <div><h1>Your insights</h1><pre>{result}</pre></div>}

@@ -2,8 +2,8 @@ import axios from "axios";
 
 export default async function bigFive(req, res) {
   const rapidAPIKey = process.env.RAPIDAPI_API_KEY;
-  const rapidAPIEndpoint = "https://big-five-personality-insights.p.rapidapi.com/api/big5";
-  const rapidAPIHost = 'big-five-personality-insights.p.rapidapi.com';
+  const rapidAPIEndpoint = process.env.RAPIDAPI_ENDPOINT;
+  const rapidAPIHost = process.env.RAPIDAPI_HOST;
 
   try {
     const options = {
