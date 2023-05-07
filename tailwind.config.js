@@ -1,12 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: "class",
-  content: ["./pages/*.js"],
+  content: ["./pages/**/*.js", "./components/**/*{.js,jsx}"],
   theme: {
-    colors: {
-      'softGold': '#fff49b',
-      'gold': '#f1ca1d'
-    },
     extend: {},
   },
   plugins: [],

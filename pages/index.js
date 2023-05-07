@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import styles from 'styles/index.module.css';
 import { DataContext } from 'util/context.jsx';
-import { Sidebar, TopMenu } from "components/page";
+import { TopMenu } from "components/page";
 
 const devData = {data: 
 "outgoing:0.8960937095330063,"+
@@ -26,7 +26,7 @@ export default function MyMemento() {
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [sideMenuOpen, setSideMenuOpen] = useState(false);
+  const [menuBarOpen, setMenuBarOpen] = useState(false);
 
 
   async function onSubmit(event) {
@@ -75,43 +75,41 @@ export default function MyMemento() {
   }
 
   return (<DataContext.Provider value={{
-    sideMenuOpenContext: [sideMenuOpen, setSideMenuOpen]
+    styles: styles,
+    menuBarOpenContext: [menuBarOpen, setMenuBarOpen]
   }}>
-      <div className={`dark bg-softGold`}>
+      <div className={``}>
         <Head>
           <title>My Memento</title>
           <link rel="icon" href="/buddha-elephant.png" />
         </Head>
 
-        <main className={`${styles.main} h-screen dark:bg-black overflow-auto`}>
+        <main className={`${styles.main} h-screen overflow-auto bg-gray-100`}>
           <TopMenu />
-          <Sidebar />
-
-
-          <img src="/buddha-elephant.png" className={`${styles.icon}`} />
-          <h3>My Memento</h3>
-          <form onSubmit={onSubmit}>
-            <input
-              type={"text"}
-              name={"queryInput"}
-              placeholder={"Analyze emotional tone of language..."}
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-            />
-            <input type="submit" value="Submit" />
-          </form>
-          <div className={`${styles.results}`}>
-            {loading && <div className={`${styles.loading}`}>Loading...</div>}
-            {error && <div>Error: {error}</div>}
-            {!loading && prevQuery && <div>
-              <div className={`text-center font-bold`}>Your query:</div> 
-              <div>{prevQuery}</div>
-              </div>}
-            {result && <div>
-                <h1 className={`text-xl font-semibold py-8 text-center`}>Your insights</h1>
-                <pre className={`py-4 text-base`}>{result}</pre>
-              </div>
-            }
+          <div className={`absolute mt-36 mx-auto`}>
+            <form onSubmit={onSubmit} className={`m-auto`}>
+              <input
+                type={"text"}
+                name={"queryInput"}
+                placeholder={"Analyze emotional tone of language..."}
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+              />
+              <input type="submit" value="Submit" />
+            </form>
+            <div className={`${styles.results}`}>
+              {loading && <div className={`${styles.loading}`}>Loading...</div>}
+              {error && <div>Error: {error}</div>}
+              {!loading && prevQuery && <div>
+                <div className={`text-center font-bold`}>Your query:</div> 
+                <div>{prevQuery}</div>
+                </div>}
+              {result && <div>
+                  <h1 className={`text-xl font-semibold py-8 text-center`}>Your insights</h1>
+                  <pre className={`py-4 text-base`}>{result}</pre>
+                </div>
+              }
+            </div>
           </div>
         </main>
       </div>
