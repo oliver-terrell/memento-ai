@@ -1,37 +1,26 @@
-import { useDataContext } from "util/context";
+import { useState } from 'react';
 import { Person, PersonCircle, List } from 'react-bootstrap-icons';
 
-const TopMenu = ({}) => {
-    const { styles, menuBarOpenContext } = useDataContext();
-    const [isOpen, setIsOpen] = menuBarOpenContext;
-    
-    return <div className={`absolute top-0 w-screen py-4 px-4 bg-gray-800 text-xl inline-flex flex-col gap-5
-        border-b border-gray-300 border-opacity-100 border-t-1
-    `}>
-        <div className={`font-bold inline-flex flex-none`}>
-            <div 
-                className={
-                    `hover:cursor-pointer border-gray-800 border-2 rounded-md
-                    ${isOpen 
-                        ? `border-solid border-[#fff49b] bg-[#fff49b] hover:border-[#F1CA1D]`
-                        : `border-dotted hover:border-solid hover:border-[#F1CA1D]`}
-                    `
-                }
-                onClick={() => setIsOpen(!isOpen)}
-            >
-                <img src="/buddha-elephant.png" className={`${styles.icon} flex-initial`} />
-            </div>
-            <div className={`flex-initial m-auto px-10 pr-32 text-3xl text-[#F1CA1D] font-light tracking-widest`}>My Memento</div>
-        </div>
+const TopMenu = () => {
+  const [loggedIn, setLoggedIn] = useState(false);
 
-        <div className={`${isOpen ? "inline-flex" : "hidden"} relative gap-20 flex-none border-t border-gray-300 border-opacity-100 border-t-1 pt-4 pl-4`}>
-            <div className={`flex-initial text-white hover:cursor-pointer hover:border-solid hover:border-1 hover:border-gray-300`}><Person /></div>
-            <div className={`flex-initial text-white hover:cursor-pointer `}><PersonCircle /></div>
-            <div className={`flex-initial text-white hover:cursor-pointer `}><List /></div>
-            <div className={`flex-initial text-white hover:cursor-pointer `}>Elepha</div>
-            <div className={`flex-initial text-white hover:cursor-pointer `}>nt Dick</div>
+  return (
+    <header className={`fixed top-0 left-0 w-full bg-gray-800 text-center shadow-md z-50`}>
+        <div className={`relative w-auto m-auto py-10 text-3xl text-[#F1CA1D] font-light tracking-widest`}>My Memento</div>
+        <div className={`fixed top-0 right-0 text-white m-4 inline-flex flex-col h-full`}>
+            <div 
+                className={`flex-initial inline-flex pl-6 pb-2 text-sm`}             
+            >
+                <div className={`flex-initial`}>{loggedIn ? 'Welcome, User' : 'Anonymous'}</div>
+                <div className={`flex-initial inline-flex hover:cursor-pointer`} onClick={() => setLoggedIn(!loggedIn)}>
+                    <span className={`pl-4 text-md`}>{loggedIn ? <PersonCircle /> : <Person />}</span>
+                    <span className={'text-sm pl-2'}>Log {loggedIn ? 'out' : 'in'}</span>
+                </div>
+            </div>
         </div>
-    </div>;
+    </header>
+  );
 };
 
 export default TopMenu;
+

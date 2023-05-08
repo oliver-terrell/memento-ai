@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import styles from 'styles/index.module.css';
 import { DataContext } from 'util/context.jsx';
-import { TopMenu } from "components/page";
+import { TopMenu, SideMenu } from "components/page";
 
 const devData = {data: 
 "outgoing:0.8960937095330063,"+
@@ -26,7 +26,7 @@ export default function MyMemento() {
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [menuBarOpen, setMenuBarOpen] = useState(false);
+  const [sideMenuOpen, setSideMenuOpen] = useState(false);
 
 
   async function onSubmit(event) {
@@ -76,7 +76,7 @@ export default function MyMemento() {
 
   return (<DataContext.Provider value={{
     styles: styles,
-    menuBarOpenContext: [menuBarOpen, setMenuBarOpen]
+    sideMenuOpenContext: [sideMenuOpen, setSideMenuOpen]
   }}>
       <div className={``}>
         <Head>
@@ -84,8 +84,9 @@ export default function MyMemento() {
           <link rel="icon" href="/buddha-elephant.png" />
         </Head>
 
-        <main className={`${styles.main} h-screen overflow-auto bg-gray-100`}>
+        <main className={`${styles.main}`}>
           <TopMenu />
+          <SideMenu />
           <div className={`absolute mt-36 mx-auto`}>
             <form onSubmit={onSubmit} className={`m-auto`}>
               <input
