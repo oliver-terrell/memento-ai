@@ -1,4 +1,4 @@
-** NOTE ** This project was initalized using OpenAI's `openai-quickstart-node` starter kit. Thank you to everyone involved for making such a project available!
+** NOTE ** the My Memento web application was initalized using OpenAI's `openai-quickstart-node` starter kit. Thank you to everyone involved in the project !
 
 ------------------
 
