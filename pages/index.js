@@ -4,6 +4,8 @@ import axios from "axios";
 import styles from 'styles/index.module.css';
 import { DataContext } from 'util/context.jsx';
 import { TopMenu, SideMenu } from "components/page";
+import { getAspectPercentages } from "util/marshal";
+import { ArrowClockwise } from "react-bootstrap-icons";
 
 const devData = {data: 
 "outgoing:0.8960937095330063,"+
@@ -28,6 +30,12 @@ export default function MyMemento() {
   const [error, setError] = useState(null);
   const [sideMenuOpen, setSideMenuOpen] = useState(false);
 
+  const rerun = () => {
+    setQuery(prevQuery);
+    setTimeout(() => {
+      document.getElementById("submit").click();
+    }, 500);
+  }
 
   async function onSubmit(event) {
     event.preventDefault();
@@ -49,16 +57,16 @@ export default function MyMemento() {
 
       // const response = devData;
 
-      var data = JSON.stringify(response.data).split(',');
-      var output = data.filter(trait => trait.includes('.'))
-        .sort((a, b) => {
+      var aspectPercentages = getAspectPercentages(response.data);
+      var data = JSON.stringify(aspectPercentages).split(',');
+      var output = data.sort((a, b) => {
           return parseFloat(b.split(':')[1]) - parseFloat(a.split(':')[1]);
         })
         .map((trait) => {
             return <div key={trait}>
               <div>
-                <b>{trait.split(':')[0].replace(/"([^"]+(?="))"/g, '$1')}:</b>
-                <span className={styles.numbers}>{parseFloat(trait.split(':')[1]).toString()}</span>
+                <b>{trait.split(':')[0].replace(/"([^"]+(?="))"/g, '$1').replace('{','')}:</b>
+                <span className={styles.numbers}>{parseFloat(trait.split(':')[1]).toString()} %</span>
               </div>
             </div>
         });
@@ -96,14 +104,17 @@ export default function MyMemento() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
               />
-              <input type="submit" value="Submit" />
+              <input id="submit" type="submit" value="Submit" />
             </form>
             <div className={`${styles.results}`}>
               {loading && <div className={`${styles.loading}`}>Loading...</div>}
               {error && <div>Error: {error}</div>}
               {!loading && prevQuery && <div>
                 <div className={`text-center font-bold`}>Your query:</div> 
-                <div>{prevQuery}</div>
+                <div className={`flex gap-2`}>
+                  {prevQuery}
+                  <ArrowClockwise className={`hover:cursor-pointer`} size={30} onClick={() => rerun()} />
+                </div>
                 </div>}
               {result && <div>
                   <h1 className={`text-xl font-semibold py-8 text-center`}>Your insights</h1>

@@ -11,10 +11,9 @@ const TopMenu = () => {
             <div 
                 className={`flex-initial inline-flex pl-6 pb-2 text-sm`}             
             >
-                <div className={`flex-initial`}>{loggedIn ? 'Welcome, User' : 'Anonymous'}</div>
                 <div className={`flex-initial inline-flex hover:cursor-pointer`} onClick={() => setLoggedIn(!loggedIn)}>
                     <span className={`pl-4 text-md`}>{loggedIn ? <PersonCircle /> : <Person />}</span>
-                    <span className={'text-sm pl-2'}>Log {loggedIn ? 'out' : 'in'}</span>
+                    <span className={'text-sm pl-2'}>{loggedIn ? 'Alexander Hamilton' : 'Anonymous'}</span>
                 </div>
             </div>
         </div>
