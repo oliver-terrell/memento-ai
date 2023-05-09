@@ -58,6 +58,5 @@ export const getAspectPercentages = (data) => {
         }
     }
 
-    console.log(aspects);
     return aspects;
 };
