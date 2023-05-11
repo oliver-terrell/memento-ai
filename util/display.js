@@ -1,4 +1,5 @@
 import { getAspectPercentages } from "./marshal";
+import styles from '../styles/Home.module.css';
 
 export const getAspectPercentagesDisplay = (data) => {
     var aspectPercentages = getAspectPercentages(data);
