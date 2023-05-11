@@ -59,7 +59,7 @@ module.exports = async (req, res) => {
   
     try {
       const data = await analyze(url);
-      const output = getAspectPercentagesDisplay(data);
+      const output = getAspectPercentagesDisplay(data, true);
       res.json(output);
     } catch (error) {
       res.status(500).json({ error: error.message });
