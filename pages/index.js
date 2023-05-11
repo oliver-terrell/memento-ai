@@ -52,11 +52,7 @@ export default function MyMemento() {
     try {
 
       const response = await axios.post("/api/bigFive", { query: query });
-
-      // TODO: clean up ui and show a simple text based summary then ship that live
-
       // const response = devData;
-
       var aspectPercentages = getAspectPercentages(response.data);
       var data = JSON.stringify(aspectPercentages).split(',');
 
@@ -93,6 +89,8 @@ export default function MyMemento() {
           <title>My Memento</title>
           <link rel="icon" href="/buddha-elephant.png" />
         </Head>
+
+        {/* TODO: refactor for mobile styling first */}
 
         <main className={`${styles.main}`}>
           <TopMenu />
