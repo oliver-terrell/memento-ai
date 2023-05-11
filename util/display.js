@@ -8,7 +8,7 @@ export const getAspectPercentagesDisplay = (data, forExtension=false) => {
         return parseFloat(b.split(':')[1]) - parseFloat(a.split(':')[1]);
       })
       .map((aspect) => {
-          forExtension 
+          return forExtension 
             ? `<div class="result">
                 <span><b>${aspect.split(':')[0].replace(/"([^"]+(?="))"/g, '$1').replace('{','')}:</b></span>
                 <span class="number">${parseFloat(aspect.split(':')[1]).toString()} %</span>
