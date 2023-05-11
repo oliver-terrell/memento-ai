@@ -9,10 +9,7 @@ export const getAspectPercentagesDisplay = (data, forExtension=false) => {
       })
       .map((aspect) => {
           return forExtension 
-            ? `<div class="result">
-                <span><b>${aspect.split(':')[0].replace(/"([^"]+(?="))"/g, '$1').replace('{','')}:</b></span>
-                <span class="number">${parseFloat(aspect.split(':')[1]).toString()} %</span>
-              </div>`
+            ? `<div class="result"><span><b>${aspect.split(':')[0].replace(/"([^"]+(?="))"/g, '$1').replace('{','')}:</b></span><span class="number">${parseFloat(aspect.split(':')[1]).toString()} %</span></div>`
             : <div key={aspect}>
                 <div>
                 <b>{aspect.split(':')[0].replace(/"([^"]+(?="))"/g, '$1').replace('{','')}:</b>
