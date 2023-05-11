@@ -7,16 +7,16 @@ export const getAspectPercentagesDisplay = (data, forExtension=false) => {
     var output = data.sort((a, b) => {
         return parseFloat(b.split(':')[1]) - parseFloat(a.split(':')[1]);
       })
-      .map((trait) => {
+      .map((aspect) => {
           forExtension 
             ? `<div class="result">
                 <span><b>${aspect.split(':')[0].replace(/"([^"]+(?="))"/g, '$1').replace('{','')}:</b></span>
                 <span class="number">${parseFloat(aspect.split(':')[1]).toString()} %</span>
               </div>`
-            : <div key={trait}>
+            : <div key={aspect}>
                 <div>
-                <b>{trait.split(':')[0].replace(/"([^"]+(?="))"/g, '$1').replace('{','')}:</b>
-                <span className={styles.numbers}>{parseFloat(trait.split(':')[1]).toString()} %</span>
+                <b>{aspect.split(':')[0].replace(/"([^"]+(?="))"/g, '$1').replace('{','')}:</b>
+                <span className={styles.numbers}>{parseFloat(aspect.split(':')[1]).toString()} %</span>
                 </div>
              </div>
       });
