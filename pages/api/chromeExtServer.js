@@ -1,6 +1,6 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
-import { getAspectPercentages } from 'util/marshal';
+import { getAspectPercentagesDisplay } from 'util/display';
 
 const RAPIDAPI_SECRET_KEY = process.env.RAPIDAPI_API_KEY;
 const RAPIDAPI_ENDPOINT = process.env.RAPIDAPI_ENDPOINT;
@@ -58,10 +58,9 @@ module.exports = async (req, res) => {
     }
   
     try {
-      // TODO: move the display and calculation logic from memento-ext to here for reuse
       const data = await analyze(url);
-      const aspectPercentages = getAspectPercentages(data);
-      res.json(aspectPercentages);
+      const output = getAspectPercentagesDisplay(data);
+      res.json(output);
     } catch (error) {
       res.status(500).json({ error: error.message });
     }

@@ -4,8 +4,8 @@ import axios from "axios";
 import styles from 'styles/index.module.css';
 import { DataContext } from 'util/context.jsx';
 import { TopMenu, SideMenu } from "components/page";
-import { getAspectPercentages } from "util/marshal";
 import { ArrowClockwise } from "react-bootstrap-icons";
+import { getAspectPercentagesDisplay } from "util/display";
 
 const devData = {data: 
 "outgoing:0.8960937095330063,"+
@@ -52,26 +52,8 @@ export default function MyMemento() {
     try {
 
       const response = await axios.post("/api/bigFive", { query: query });
-
-      // TODO: clean up ui and show a simple text based summary then ship that live
-
       // const response = devData;
-
-      var aspectPercentages = getAspectPercentages(response.data);
-      var data = JSON.stringify(aspectPercentages).split(',');
-
-      // TODO: move this to function and reuse in api/chromeExtServer.js for return value.
-      var output = data.sort((a, b) => {
-          return parseFloat(b.split(':')[1]) - parseFloat(a.split(':')[1]);
-        })
-        .map((trait) => {
-            return <div key={trait}>
-              <div>
-                <b>{trait.split(':')[0].replace(/"([^"]+(?="))"/g, '$1').replace('{','')}:</b>
-                <span className={styles.numbers}>{parseFloat(trait.split(':')[1]).toString()} %</span>
-              </div>
-            </div>
-        });
+      const output = getAspectPercentagesDisplay(response.data);
       setResult(output);
       setPrevQuery(query);
       setQuery("");
