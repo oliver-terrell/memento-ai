@@ -59,6 +59,8 @@ export default function MyMemento() {
 
       var aspectPercentages = getAspectPercentages(response.data);
       var data = JSON.stringify(aspectPercentages).split(',');
+
+      // TODO: move this to function and reuse in api/chromeExtServer.js for return value.
       var output = data.sort((a, b) => {
           return parseFloat(b.split(':')[1]) - parseFloat(a.split(':')[1]);
         })
