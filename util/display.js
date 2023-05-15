@@ -1,21 +1,33 @@
 import { getAspectPercentages } from "./marshal";
 import styles from 'styles/index.module.css';
 
+const renderExtensionResult = (aspect) => {
+  const key = aspect.split(':')[0].replace(/"([^"]+(?="))"/g, '$1').replace('{', '');
+  const value = parseFloat(aspect.split(':')[1]).toString();
+
+  return `<div class="result"><span><b>${key}:</b></span><span class="number">${value} %</span></div>`;
+};
+
+const renderWebAppResult = (aspect) => {
+  const key = aspect.split(':')[0].replace(/"([^"]+(?="))"/g, '$1').replace('{', '');
+  const value = parseFloat(aspect.split(':')[1]).toString();
+
+  return (
+    <div key={aspect}>
+      <div>
+        <b>{key}:</b>
+        <span className={styles.numbers}>{value} %</span>
+      </div>
+    </div>
+  );
+};
+
 export const getAspectPercentagesDisplay = (data, forExtension=false) => {
-    var aspectPercentages = getAspectPercentages(data);
-    var data = JSON.stringify(aspectPercentages).split(',');
-    var output = data.sort((a, b) => {
+    const aspectPercentages = getAspectPercentages(data);
+    const dataArray = JSON.stringify(aspectPercentages).split(',');
+    var output = dataArray.sort((a, b) => {
         return parseFloat(b.split(':')[1]) - parseFloat(a.split(':')[1]);
-      })
-      .map((aspect) => {
-          return forExtension 
-            ? `<div class="result"><span><b>${aspect.split(':')[0].replace(/"([^"]+(?="))"/g, '$1').replace('{','')}:</b></span><span class="number">${parseFloat(aspect.split(':')[1]).toString()} %</span></div>`
-            : <div key={aspect}>
-                <div>
-                <b>{aspect.split(':')[0].replace(/"([^"]+(?="))"/g, '$1').replace('{','')}:</b>
-                <span className={styles.numbers}>{parseFloat(aspect.split(':')[1]).toString()} %</span>
-                </div>
-             </div>
-      });
+    })
+    .map(aspect => forExtension ? renderExtensionResult(aspect) : renderWebAppResult(aspect));
     return output;
 };
