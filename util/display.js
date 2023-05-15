@@ -18,7 +18,7 @@ export const getAspectPercentagesDisplay = (data, forExtension = false) => {
   });
 
   const output = sortedData.map((aspect) => {
-    const htmlString = renderResult(aspect);
+    const htmlString = renderResult(aspect, forExtension);
 
     return forExtension
       ? htmlString
