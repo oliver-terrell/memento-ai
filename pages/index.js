@@ -74,6 +74,7 @@ export default function MyMemento() {
         <Head>
           <title>My Memento</title>
           <link rel="icon" href="/buddha-elephant.png" />
+          <meta name="description" content="Leverage AI to glean the emotional context and personality of written text using the widely accepted Big Five Personality Traits from Modern Psychology. Use to illuminate author intent, decode text messages, or compose more powerful emails!" />
         </Head>
 
         <main className={`${styles.main}`}>
