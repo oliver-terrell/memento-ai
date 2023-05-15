@@ -7,19 +7,20 @@ import { TopMenu, SideMenu } from "components/page";
 import { ArrowClockwise } from "react-bootstrap-icons";
 import { getAspectPercentagesDisplay } from "util/display";
 
-const devData = {data: 
-"outgoing:0.8960937095330063,"+
-"intellectual:0.7939263435966878,"+
-"sympathy:0.7783130212148792,"+
-"cooperative:0.7511118017478042,"+
-"dutiful:0.7486107102951731,"+
-"trusting:0.7467607905816888,"+
-"authority_challenging:0.742335782627034,"+
-"uncompromising:0.7197297637282543,"+
-"modesty:0.7196483672608609,"+
-"emotionally_aware:0.6747619153328746,"+
-"gregariousness:0.6745473246461103,"+
-"cheerful:0.6639879829215412,"
+const devData = {
+  data: 
+    "outgoing:0.8960937095330063,"+
+    "intellectual:0.7939263435966878,"+
+    "sympathy:0.7783130212148792,"+
+    "cooperative:0.7511118017478042,"+
+    "dutiful:0.7486107102951731,"+
+    "trusting:0.7467607905816888,"+
+    "authority_challenging:0.742335782627034,"+
+    "uncompromising:0.7197297637282543,"+
+    "modesty:0.7196483672608609,"+
+    "emotionally_aware:0.6747619153328746,"+
+    "gregariousness:0.6745473246461103,"+
+    "cheerful:0.6639879829215412,"
 };
 
 export default function MyMemento() {
