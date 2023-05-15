@@ -2,7 +2,7 @@
 
 ------------------
 
-Here's how each of the provided words/terms fit into the five aspects of the Big Five model:
+Here's a list of which aspects correspond to each of the Big Five Personality Traits:
 
 1. Openness:
 - intellectual
