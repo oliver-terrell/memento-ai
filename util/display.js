@@ -6,7 +6,7 @@ const renderResult = (aspect, forExtension) => {
   const value = parseFloat(aspect.split(':')[1]).toString();
   const numberClass = forExtension ? 'number' : styles.number;
 
-  return `<div class="result"><span><b>${key}:</b></span><span class="${numberClass}">${value} %</span></div>`;
+  return `<div class="ext-result"><span><b>${key}:</b></span><span class="${numberClass}">${value} %</span></div>`;
 };
 
 export const getAspectPercentagesDisplay = (data, forExtension = false) => {
