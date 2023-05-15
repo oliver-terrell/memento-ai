@@ -88,6 +88,6 @@ and (max-device-width : 640px) {
 .main .results * {
   padding-bottom: 5px;
 }
-.main .numbers {
+.main .number {
   float: right;
 }
