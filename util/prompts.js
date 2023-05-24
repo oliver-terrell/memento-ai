@@ -13,7 +13,7 @@ export function generatePrompt(components={}, isExtension=false) {
     might correspond to scores that stand out, and why. 
     
     Keep your response to a couple sentences. You don't need to touch on everything. Be nice, and touch on at
-    least two notable big five traits with high or low scores compared to the others. Don't reference "data" in
-    your response, instead keep the focus on the words.
+    least two notable big five traits, high or low. Don't reference "data" in your response, instead keep the
+    focus on the words.
     `;
 }

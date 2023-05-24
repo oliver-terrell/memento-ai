@@ -2,6 +2,7 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 import { openai } from "./base.js";
 import { getAspectPercentagesDisplay } from 'util/display';
+import { getAspectPercentages } from 'util/marshal';
 import { generatePrompt } from "util/prompts.js";
 
 const RAPIDAPI_SECRET_KEY = process.env.RAPIDAPI_API_KEY;
@@ -81,7 +82,7 @@ module.exports = async (req, res) => {
     try {
       const visibleText = await scrapeVisibleText(url);
       const bigFiveData = await analyzeBigFive(visibleText);
-      const textSummary = await getTextSummary(visibleText, bigFiveData);
+      const textSummary = await getTextSummary(visibleText, getAspectPercentages(bigFiveData));
       const bigFiveOutput = getAspectPercentagesDisplay(bigFiveData, true);
       res.json({bigFiveOutput: bigFiveOutput, textSummary: textSummary});
     } catch (error) {
