@@ -51,10 +51,9 @@ async function analyzeBigFive(visibleText) {
   }
 }
 
-async function getTextSummary(visibleText, bigFiveData) {
+async function getTextSummary(visibleText, aspectPercentages) {
   try {
-    const prompt = generatePrompt({query: visibleText, bigFiveData: bigFiveData}, true);
-    console.log(prompt);
+    const prompt = generatePrompt({query: visibleText, aspectPercentages: aspectPercentages}, true);
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
       prompt: prompt,
@@ -82,9 +81,10 @@ module.exports = async (req, res) => {
     try {
       const visibleText = await scrapeVisibleText(url);
       const bigFiveData = await analyzeBigFive(visibleText);
-      const textSummary = await getTextSummary(visibleText, getAspectPercentages(bigFiveData));
-      const bigFiveOutput = getAspectPercentagesDisplay(bigFiveData, true);
-      res.json({bigFiveOutput: bigFiveOutput, textSummary: textSummary});
+      const aspectPercentages = getAspectPercentages(bigFiveData);
+      const textSummary = await getTextSummary(visibleText, aspectPercentages);
+      const aspectPercentagesOutput = getAspectPercentagesDisplay(bigFiveData, true);
+      res.json({aspectPercentages: aspectPercentagesOutput, textSummary: textSummary});
     } catch (error) {
       res.status(500).json({ error: error.message });
     }

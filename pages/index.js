@@ -61,7 +61,7 @@ export default function MyMemento() {
         "/api/textSummary",
          { 
           query: query, 
-          bigFiveData: getAspectPercentages(bigFiveResponse.data)
+          aspectPercentages: getAspectPercentages(bigFiveResponse.data)
         }
       );
       // const bigFiveResponse = devData;

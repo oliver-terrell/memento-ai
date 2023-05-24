@@ -12,10 +12,10 @@ export default async function (req, res) {
   }
 
   const query = req.body.query;
-  const bigFiveData = req.body.bigFiveData;
+  const aspectPercentages = req.body.aspectPercentages;
 
   try {
-    const prompt = generatePrompt({query: query, bigFiveData: bigFiveData});
+    const prompt = generatePrompt({query: query, aspectPercentages: aspectPercentages});
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
       prompt: prompt,

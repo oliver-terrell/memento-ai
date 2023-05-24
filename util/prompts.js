@@ -7,7 +7,7 @@ export function generatePrompt(components={}, isExtension=false) {
   
     Through a personality analysis tool. It gave me this JSON data back with the format of { trait: percentage, ... }:
   
-     ${JSON.stringify(components.bigFiveData) || '{{ error: no traits found }}'}
+     ${JSON.stringify(components.aspectPercentages) || '{{ error: no traits found }}'}
   
     Tell me what parts of ${isExtension ? 'this page' : 'my words'} or ${isExtension ? 'its' : 'my'} communication style
     might correspond to scores that stand out, and why. 
