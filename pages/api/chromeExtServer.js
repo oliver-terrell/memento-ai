@@ -74,7 +74,7 @@ function generatePrompt(components={}) {
   Pretend you are a psychologist and a trusted friend, and that we are having a simple conversation over tea.
   Why do you think this page, the text of which is here wrapped in empty xml tags: </> ${components.query || '{{ error: no text found }}'} </>
   Embodies the following Big Five personality trait profile (wrapped in empty xml tags), where scores for each trait are percentages?  <> ${components.bigFiveData || '{{ error: no traits found }}'} </>?
-  Tell me what parts of the text might correspond to each score, and why. Keep your response to a couple sentences. You don't need to touch on everything. 
+  Tell me what parts of the text might correspond to each score, and why. Keep your response to a couple sentences. You don't need to touch on everything, but if a score is low (out of 100) explain a little why and likewise if a score is high, tell me why the page scores high in that trait. 
   Reference the text input as something like "this page" instead of "text" or "input". Also, be nice, and touch on at least two notable big five traits.
   `;
 }
