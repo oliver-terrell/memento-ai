@@ -52,9 +52,11 @@ async function analyzeBigFive(visibleText) {
 
 async function getTextSummary(visibleText, bigFiveData) {
   try {
+    const prompt = generatePrompt({query: visibleText, bigFiveData: bigFiveData}, true);
+    console.log(prompt);
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: generatePrompt({query: visibleText, bigFiveData: bigFiveData}, true),
+      prompt: prompt,
       temperature: 0.8,
       max_tokens: 256,
     });

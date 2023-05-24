@@ -16,7 +16,6 @@ export default async function (req, res) {
 
   try {
     const prompt = generatePrompt({query: query, bigFiveData: bigFiveData});
-    console.log(prompt);
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
       prompt: prompt,
