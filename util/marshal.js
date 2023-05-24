@@ -57,6 +57,5 @@ export const getAspectPercentages = (data) => {
             aspects[aspect] = Math.round((score / 6) * 100);
         }
     }
-
     return aspects;
 };

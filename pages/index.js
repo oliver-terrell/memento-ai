@@ -120,10 +120,10 @@ export default function MyMemento() {
 
               {/* TODO: ResultHeader component */}
               {!loading && prevQuery && <div>
-                <div className={`text-center font-bold`}>Your query:</div> 
+                <div className={`text-center font-bold`}>Your words:</div> 
                 <div className={`flex gap-2`}>
                   {prevQuery}
-                  <ArrowClockwise className={`hover:cursor-pointer`} size={30} onClick={() => rerun()} />
+                  {/* <ArrowClockwise className={`hover:cursor-pointer`} size={30} onClick={() => rerun()} /> */}
                 </div>
                 </div>}
 

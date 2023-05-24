@@ -1,4 +1,5 @@
 import { openai, configuration } from "./base.js";
+import { generatePrompt } from "util/prompts.js";
 
 export default async function (req, res) {
   if (!configuration.apiKey) {
@@ -14,9 +15,11 @@ export default async function (req, res) {
   const bigFiveData = req.body.bigFiveData;
 
   try {
+    const prompt = generatePrompt({query: query, bigFiveData: bigFiveData});
+    console.log(prompt);
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: generatePrompt({query: query, bigFiveData: bigFiveData}),
+      prompt: prompt,
       temperature: 0.8,
       max_tokens: 256,
     });
@@ -35,14 +38,4 @@ export default async function (req, res) {
       });
     }
   }
-}
-
-function generatePrompt(components={}) {
-  return `
-  Pretend you are a psychologist and a trusted friend, and that we are having a simple conversation over tea.
-  Why do you think my input, which is here wrapped in empty xml tags: </> ${components.query || '{{ error: no text found }}'} </>
-  Embodies the following Big Five personality trait profile (wrapped in empty xml tags), where scores for each trait are percentages? <> ${components.bigFiveData || '{{ error: no traits found }}'} </>?
-  Tell me what parts of the text might correspond to each score, and why. Keep your response to a couple sentences. You don't need to touch on everything. 
-  Reference the text input as something like "your words" instead of "text" or "input". Also, be nice, and touch on at least two notable big five traits.
-  `;
 }

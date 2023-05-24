@@ -1,15 +1,6 @@
-import { openai, configuration } from "./base.js";
+import { openai } from "./base.js";
 
 export default async function (req, res) {
-  if (!configuration.apiKey) {
-    res.status(500).json({
-      error: {
-        message: "OpenAI API key not configured, please follow instructions in README.md",
-      }
-    });
-    return;
-  }
-
   const animal = req.body.animal || '';
   if (animal.trim().length === 0) {
     res.status(400).json({
