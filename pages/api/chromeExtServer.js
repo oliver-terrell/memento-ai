@@ -70,6 +70,7 @@ async function getTextSummary(visibleText, bigFiveData) {
 }
 
 function generatePrompt(components={}) { 
+  // TODO: figure out why text-davinci-003 thinks the percentages are different that what we get from the aspect display
   return `
   Pretend you are a psychologist and a trusted friend, and that we are having a simple conversation over tea.
   Why do you think this page, the text of which is here wrapped in empty xml tags: </> ${components.query || '{{ error: no text found }}'} </>
