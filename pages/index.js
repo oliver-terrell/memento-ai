@@ -5,6 +5,7 @@ import styles from 'styles/index.module.css';
 import { DataContext } from 'util/context.jsx';
 import { TopMenu, SideMenu } from "components/page";
 import { ArrowClockwise } from "react-bootstrap-icons";
+import { getAspectPercentages } from "util/marshal.js";
 import { getAspectPercentagesDisplay } from "util/display";
 
 const devData = {
@@ -26,7 +27,8 @@ const devData = {
 export default function MyMemento() {
   const [query, setQuery] = useState("");
   const [prevQuery, setPrevQuery] = useState(query);
-  const [result, setResult] = useState(null);
+  const [bigFiveResult, setBigFiveResult] = useState(null);
+  const [textSummaryResult, setTextSummaryResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [sideMenuOpen, setSideMenuOpen] = useState(false);
@@ -38,24 +40,34 @@ export default function MyMemento() {
     }, 500);
   }
 
-  async function onSubmit(event) {
-    event.preventDefault();
+  async function onSubmit(e) {
+    e.preventDefault();
 
     if (query === '') {
-      setResult('An empty vessel can quench no thirst . . .');
+      setBigFiveResult('An empty vessel can quench no thirst . . .');
+      setTextSummaryResult('Speak unto your world. Discovery awaits . . .')
       return;
     }
 
     setLoading(true);
     setError(false);
-    setResult(null);
+    setBigFiveResult(null);
+    setTextSummaryResult(null);
 
     try {
 
-      const response = await axios.post("/api/bigFive", { query: query });
-      // const response = devData;
-      const output = getAspectPercentagesDisplay(response.data);
-      setResult(output);
+      const bigFiveResponse = await axios.post("/api/bigFive", { query: query });
+      const textSummaryResponse = await axios.post(
+        "/api/textSummary",
+         { 
+          query: query, 
+          bigFiveData: getAspectPercentages(bigFiveResponse.data)
+        }
+      );
+      // const bigFiveResponse = devData;
+      const bigFiveOutput = getAspectPercentagesDisplay(bigFiveResponse.data);
+      setBigFiveResult(bigFiveOutput);
+      setTextSummaryResult(textSummaryResponse.data.result);
       setPrevQuery(query);
       setQuery("");
       setLoading(false);
@@ -79,10 +91,15 @@ export default function MyMemento() {
         </Head>
 
         <main className={`${styles.main}`}>
+
+          {/* TODO: Mobile styling first on these components */}
           <TopMenu />
           <SideMenu />
+
           <div className={`absolute mt-36 mx-auto`}>
             <form onSubmit={onSubmit} className={`m-auto`}>
+
+              {/* TODO: Better input design - steal from monte's textarea in GPT-starter */}
               <input
                 type={"text"}
                 name={"queryInput"}
@@ -91,10 +108,17 @@ export default function MyMemento() {
                 onChange={(e) => setQuery(e.target.value)}
               />
               <input id="submit" type="submit" value="Submit" />
+
             </form>
             <div className={`${styles.results}`}>
+
+              {/* TODO: Loading component */}
               {loading && <div className={`${styles.loading}`}>Loading...</div>}
+
+              {/* TODO: Error component */}
               {error && <div>Error: {error}</div>}
+
+              {/* TODO: ResultHeader component */}
               {!loading && prevQuery && <div>
                 <div className={`text-center font-bold`}>Your query:</div> 
                 <div className={`flex gap-2`}>
@@ -102,11 +126,21 @@ export default function MyMemento() {
                   <ArrowClockwise className={`hover:cursor-pointer`} size={30} onClick={() => rerun()} />
                 </div>
                 </div>}
-              {result && <div>
-                  <h1 className={`text-xl font-semibold py-8 text-center`}>Your insights</h1>
-                  <pre className={`py-4 text-base`}>{result}</pre>
+
+              {/* TODO: TextSummary component */}
+              {textSummaryResult && <div>
+                <h1 className={`text-m font-semibold py-8 text-center`}>Overview</h1>
+                  <span className={`py-4 text-base`}>{textSummaryResult}</span>
                 </div>
               }
+
+              {/* TODO: BigFive component */}
+              {bigFiveResult && <div>
+                  <h1 className={`text-xl font-semibold py-8 text-center`}>Your insights</h1>
+                  <pre className={`py-4 text-base`}>{bigFiveResult}</pre>
+                </div>
+              }
+
             </div>
           </div>
         </main>

@@ -4,27 +4,21 @@ export default async function (req, res) {
   if (!configuration.apiKey) {
     res.status(500).json({
       error: {
-        message: "OpenAI API key not configured, please follow instructions in README.md",
+        message: "OpenAI API key not configured.",
       }
     });
     return;
   }
 
-  const animal = req.body.animal || '';
-  if (animal.trim().length === 0) {
-    res.status(400).json({
-      error: {
-        message: "Try basic things like make, model, year, and / or color",
-      }
-    });
-    return;
-  }
+  const query = req.body.query;
+  const bigFiveData = req.body.bigFiveData;
 
   try {
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: generatePrompt(animal),
-      temperature: 0.6,
+      prompt: generatePrompt({query: query, bigFiveData: bigFiveData}),
+      temperature: 0.8,
+      max_tokens: 256,
     });
     res.status(200).json({ result: completion.data.choices[0].text });
   } catch(error) {
@@ -43,15 +37,12 @@ export default async function (req, res) {
   }
 }
 
-function generatePrompt(animal) {
-  const capitalizedAnimal =
-    animal[0].toUpperCase() + animal.slice(1).toLowerCase();
-  return `Suggest three names for an animal that is a superhero.
-
-Animal: Cat
-Names: Captain Sharpclaw, Agent Fluffball, The Incredible Feline
-Animal: Dog
-Names: Ruff the Protector, Wonder Canine, Sir Barks-a-Lot
-Animal: ${capitalizedAnimal}
-Names:`;
+function generatePrompt(components={}) {
+  return `
+  Pretend you are a psychologist and a trusted friend, and that we are having a simple conversation over tea.
+  Why do you think my input, which is here wrapped in empty xml tags: </> ${components.query || '{{ error: no text found }}'} </>
+  Embodies the following Big Five personality trait profile (wrapped in empty xml tags), where scores for each trait are percentages? <> ${components.bigFiveData || '{{ error: no traits found }}'} </>?
+  Tell me what parts of the text might correspond to each score, and why. Keep your response to a couple sentences. You don't need to touch on everything. 
+  Reference the text input as something like "your words" instead of "text" or "input". Also, be nice, and touch on at least two notable big five traits.
+  `;
 }
