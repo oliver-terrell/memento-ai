@@ -63,7 +63,7 @@ async function getTextSummary(visibleText, aspectPercentages) {
     return completion.data.choices[0].text;
   } catch(error) {
       console.error(`Error with OpenAI API request: ${error.message}`);
-      return `I was unable to analyze the text from this page. Please try another one!`;
+      return `I'm sorry. I was unable to analyze the text from this page.<br />Please try again on another site. Thank you and have a nice day!`;
   }
 }
 
