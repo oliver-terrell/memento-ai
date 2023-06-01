@@ -96,18 +96,16 @@ export default function MyMemento() {
           <TopMenu />
           <SideMenu />
 
-          <div className={`absolute mt-36 mx-auto`}>
+          <div className={`absolute mt-36 mx-auto justify-center align-center text-center`}>
             <form onSubmit={onSubmit} className={`m-auto`}>
 
               {/* TODO: Better input design - steal from monte's textarea in GPT-starter */}
-              <input
-                type={"text"}
-                name={"queryInput"}
-                placeholder={"Analyze emotional tone of language..."}
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-              />
-              <input id="submit" type="submit" value="Submit" />
+              
+              <label htmlFor="message" className="block mb-2 text-sm font-lighter text-gray-900">Analyze the emotional tone of language:</label>
+              <textarea id="message" rows="4" className={`block 
+              p-2.5 w-[600px] mt-[10px] text-sm text-gray-900 bg-gray-50 rounded-lg border 
+              border-gray-300 focus:ring-blue-500 focus:border-blue-500`} placeholder="Write or paste text here . . ."></textarea>
+              <input id="submit" type="submit" value="Submit" className={`w-[340px] mx-auto mt-[20px]`} />
 
             </form>
             <div className={`${styles.results}`}>
