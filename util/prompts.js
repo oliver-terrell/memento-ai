@@ -1,7 +1,12 @@
 export function generatePrompt(components={}, isExtension=false) {
+    const tokenDict = {
+        contentReference: isExtension ? 'this page' : 'my words',
+        contentProviderReference: isExtension ? 'its' : 'my'
+    }
+
     return `
     You are a psychologist and trusted friend, and we are having a simple conversation over tea.
-    I ran ${isExtension ? 'this page' : 'my words'}:
+    I ran ${tokenDict.contentReference}:
     
     \`${components.query || '{{ error: no words found }}'}\`
   
@@ -9,7 +14,7 @@ export function generatePrompt(components={}, isExtension=false) {
   
      ${JSON.stringify(components.aspectPercentages) || '{{ error: no traits found }}'}
   
-    Tell me what parts of ${isExtension ? 'this page' : 'my words'} or ${isExtension ? 'its' : 'my'} communication style
+    Tell me what parts of ${tokenDict.contentReference} or ${tokenDict.contentProviderReference} communication style
     might correspond to scores that stand out, and why. 
     
     Keep your response to a couple sentences. You don't need to touch on everything. Be nice, and touch on at
